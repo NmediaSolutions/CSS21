@@ -1,0 +1,751 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>Index</title>
+  <meta name="description" content="" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, width=device-width" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="HandheldFriendly" content="True" />
+  <link type='text/css' rel='stylesheet' href="https://cdn.altitude3.net/_media/StyleSheet/174.css" />
+  <link rel="stylesheet" href="css/defaultGpc.css" />
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="shortcut icon" href="images/favicon.ico" />
+  <script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+	<script type="text/javascript" src="js/functions.js"></script>
+</head>
+<body>
+  <div class="wrapAll home">
+    <div>
+      <h2>Introduction</h2>
+      <p>
+        On ne va pas se voiler la face, <b>le CSS, c’est super chiant</b>.
+        Je ne saurais pas dire ce qui est le pire avec ce langage. Je suis partagé entre :
+      </p>
+      <ul>
+        <li>La syntaxe beaucoup trop simple qui pousse inévitablement à écrire du code bordélique.</li>
+        <li>Le résultat qui n’est jamais celui auquel on s’attend (notamment ces */-_”# d’alignements)</li>
+        <li>Le manque cruel de fonctionnalités pourtant évidentes, comme les variables ou l’héritage.</li>
+        <li>Le débuggage absolument infernal à partir du moment où des règles commencent à s’entrecroiser (c’est-à-dire tout le temps).</li>
+      </ul>
+      <div class="source">Un dude qui n'est pas à jour sur itexpert.fr</div>
+    </div>
+    <div>
+      <h2>Préprocesseur</h2>
+      <h3>Sass</h3>
+      <ul>
+        <li>Apparition en 2006</li>
+        <li>Malheureusement encore non-pris en charge par les navigateurs</li>
+        <li>Utilisation de variables</li>
+        <li>Utilisation de fonctions</li>
+        <li>CSS imbriqué</li>
+      </ul>
+    </div>
+    <div>
+      <h2>Variables</h2>
+      <div class="flex">
+        <div>
+          <h3>Sass</h3>
+          <pre><code>
+  $c1: #0070f9;
+  $c2: #011429;
+
+  .title{
+    background-color: $c1;          
+  }
+</code></pre>
+        </div>
+        <div>
+          <h3>CSS</h3>
+          <pre><code>
+  :root {
+    --c1: #1e90ff;
+    --c2: #ffffff;
+  }
+
+  body { 
+    background-color: var(--c1); 
+  }
+</code></pre>
+        </div>
+      </div>
+    </div>
+    <div>
+      <h2>Fonctions</h2>
+      <div class="flex">
+        <div>
+          <h3>Sass</h3>
+          <pre><code>
+  @function rem($target, $context: 16) {
+    @return ($target / $context) * 1rem;
+  }
+
+  @function percent($elem, $container: 950) {
+    @return #{(($elem * 100) / $container) + '%'};
+  }
+
+  .cta{
+    width: percent(500,1200);
+    font-size: rem(18);
+  }
+</code></pre>
+        </div>
+      </div>
+    </div>
+    <div>
+      <h2>Imbrication</h2>
+      <div class="flex">
+        <div>
+          <h3>Sass</h3>
+          <pre><code>
+  .boxContent{
+    background: #FFF;
+    width: percent(500,1200);
+            
+    .title{
+      padding: rem(24);
+      background: #e0e0e0;
+
+      h3{
+        margin: 0;
+      }
+    }
+  }  
+          </code></pre>
+        </div>
+        <div>
+          <h3>CSS</h3>
+          <pre><code>
+  .boxContent{
+    background: #FFF;
+    width: 41.666%;
+  }  
+
+  .boxContent .title{
+    padding; 1.5rem;
+    background: #e0e0e0;
+  }
+
+  .boxContent .title h3{
+    margin: 0;  
+  }
+          </code></pre>
+        </div>
+      </div>
+    </div>
+    <div>
+      <h2>Méthodologies</h2>
+      <div class="flex">
+        <div>
+          <h3>OOCSS</h3>
+          <pre><code>
+  &lt;div class="main"&gt;
+    &lt;div class="contentBox noPadding invert"&gt;
+      &lt;a class="btn red arrow"&gt;En savoir plus&lt;/a&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+</code></pre>
+        </div>
+        <div>
+          <h3>BEM</h3>
+          <pre><code>
+  &lt;div class="main"&gt;
+    &lt;div class="main__contentBox"&gt;
+      &lt;a class="main__contentBox__btn
+                main__contentBox_btn--red"&gt;En savoir plus&lt;/a&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+</code></pre>
+        </div>
+      </div>
+    </div>
+    <div>
+      <h2>Méthodologies</h2>
+      <div class="flex">
+        <div>
+          <h3>OOCSS</h3>
+          <pre><code>
+  .btn{
+    background: $c1;
+    padding: 0.5rem 1rem;
+
+    &.red{
+      ...
+    }
+
+    &.arrow{
+      ...
+    }
+
+    &:hover{
+      background: #FFF;
+    }
+  }
+
+  .invert{
+    ...
+  }
+
+  .noPadding{
+    padding: 0;
+  }
+
+  .contentBox{
+    background: #FFF;
+    padding: 1rem;
+  }
+</code></pre>
+        </div>
+        <div>
+          <h3>BEM</h3>
+          <pre><code>
+  .main{
+    .&__contentBox{
+      background: #FFF;
+      padding: 0;
+
+      .&__btn{
+        background: $c1;
+        padding: 0.5rem 1rem;
+
+        .&--red{
+          background: red;
+        }
+
+        .&--hover{
+          background: #FFF;
+        }
+      }
+    }
+  }
+</code></pre>
+        </div>
+      </div>
+    </div>
+    <div>
+      <h2>Bonnes pratiques HTML</h2>
+      <ul>
+        <li>Utiliser les bonnes balises (button/a, p/br, nav)</li>
+        <li>Pas de texte flottant</li>
+        <li>Pas de style inline</li>
+        <li>Fermer vos balises</li>
+      </ul>
+    </div>
+    <div>
+      <h2>Bonnes pratiques CSS</h2>
+      <ul>
+        <li>Bien structurer les feuilles de style</li>
+        <li>Les styles de polices doivent être sur le container</li>
+        <li>Pas de !important *</li>
+        <li>Attention aux sélecteurs</li>
+        <li>Media queries en bas complètement</li>
+      </ul>
+    </div>
+    <div>
+      <h2>Force des sélecteurs</h2>
+      <p>La force d'un sélecteur est composé de 4 chiffres : <br />!important, id, class, element</p>
+      <pre><code>
+        a{
+          color: #000; // (0001)
+        }
+
+        a.link{
+          color: #000; // (0011)
+        }
+
+        #header .section .link{
+          color: #000; // (0120)
+        }
+
+        .link{
+          color: #000!important; // (1010)
+        }
+        </code></pre>
+    </div>
+    <div>
+      <h2>Box-sizing</h2>
+      <div class="flex">
+        <div>
+          <pre><code>
+  .contentBox{
+    width: 500px;
+    padding: 30px;
+    border: 1px solid #000;
+    //Actual width = 562px
+  }
+
+  .contentBox{
+    width: 500px;
+    padding: 30px;
+    border: 1px solid #000;
+    box-sizing: border-box;
+    //Actual width = 500px
+  }
+</code></pre>
+        </div>
+        <div>
+          <div class="borderbox1"></div>
+          <div class="borderbox2"></div>
+        </div>
+      </div>
+
+    </div>
+    <div>
+      <h2>Position sticky</h2>
+      <div class="flex">
+        <div>
+          <pre><code>
+  .sticky{
+    position: sticky;
+    top: 0px;
+  }  
+      </code></pre>
+        </div>
+        <div>
+          <div class="scrollbox">
+            <div class="content">
+              <div class="sticky">
+                Allo!
+              </div>
+              <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+              <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+              <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+              <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+              <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+              <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div>
+      <h2>overscroll-behavior</h2>
+      <pre><code>
+  .scroll{
+    overscroll-behavior: contain;
+  }
+</code></pre>
+    </div>
+    <div>
+      <h2>Flexbox</h2>
+      <div class="flex">
+        <div>
+          <pre><code>
+  .container{
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    //flex-flow: row-reverse;
+    //gap: 10px;
+
+    > div:last-child{
+      flex: 1;
+      //order: 2;
+    }
+  }  
+      </code></pre>
+        </div>
+        <div>
+          <div class="container">
+            <div>1<br />1</div>
+            <div>2</div>
+            <div>3</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div>
+      <h2>Grid</h2>
+      <pre><code>
+      .container{
+        display: grid;
+        grid-template-columns: 50px 100px 50px;
+        column-gap: 10px;
+
+        .item{
+          justify-self: center;
+        }
+      }  
+      </code></pre>
+    </div>
+    <div>
+      <h2>:nth-child</h2>
+      <div class="flex">
+        <div>
+          <pre><code>
+  .item:nth-child(10){
+    background: pink;  
+  }
+        
+  .item:nth-last-child(2){
+    background: green;  
+  }
+
+  .item:nth-child(2n){
+    background: blue;   
+  }
+
+  .item:nth-child(odd){
+    border: 15px solid $c1;  
+  }
+
+  .item:nth-child(-n+3){
+    background: red;  
+  }
+      </code></pre>
+        </div>
+        <div class="nth">
+          <div>1</div>
+          <div>2</div>
+          <div>3</div>
+          <div>4</div>
+          <div>5</div>
+          <div>6</div>
+          <div>7</div>
+          <div>8</div>
+          <div>9</div>
+          <div>10</div>
+          <div>11</div>
+          <div>12</div>
+          <div>13</div>
+          <div>14</div>
+        </div>
+      </div>
+
+    </div>
+    <div>
+      <h2>rem / em</h2>
+      <pre><code>
+      html{
+        font-size: 16px  
+      } 
+        
+      .container{
+        font-size: 1.25em; //20
+        
+        .title{
+          font-size: 1.25em; // 25
+        }
+      }
+
+      .container{
+        font-size: 1.25rem; //20
+        
+        .title{
+          font-size: 1.25rem; //20
+        }
+      }
+
+      section{
+        padding: 2rem; //32  
+      }
+
+      @media screen and (max-width: 500px){
+        html{
+          font-size: 15px;
+        }  
+      }
+
+      @media screen and (max-width: 400px){
+        html{
+          font-size: 14px;
+        }  
+      }
+      </code></pre>
+    </div>
+    <div>
+      <h2>z-index</h2>
+      <div class="flex">
+        <div>
+          <pre><code>
+  .container{
+    position: relative;
+    z-index: 1;
+
+    &:before{
+      position: absolute;
+      z-index: -1;
+    }
+  } 
+      </code></pre>
+        </div>
+        <div>
+          <div class="zindex">
+            <h3>Ceci est un titre</h3>
+            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div>
+      <h2>Transform: translate</h2>
+      <div class="flex">
+        <div>
+          <pre><code>
+  .centeredBox{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }  
+      </code></pre>
+        </div>
+        <div>
+          <div class="boxy">
+            <div class="elem">
+
+            </div>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+    <div>
+      <h2>Pseudo-elements</h2>
+      <div class="flex">
+        <div>
+          <pre><code>
+  &:before{
+    content: "";
+    position: absolute;
+    background-image: url(...);
+    width: 200px;
+    height: 200px;
+    bottom: 0;
+    right: 0;
+  }
+
+  &:after{
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 50px;
+    bottom: 0;
+    left: 0;
+    background: ...
+  }
+      </code></pre>
+        </div>
+        <div>
+          <img src="capture.png" />
+        </div>
+      </div>
+
+    </div>
+    <div>
+      <h2>line-clamp</h2>
+      <div class="flex">
+        <div>
+          <pre><code>
+  .line-clamp {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+</code></pre>
+        </div>
+        <div>
+          <div class="linpclamp">
+            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div>
+      <h2>object-fit</h2>
+      <div class="flex">
+        <div>
+          <pre><code>
+  .image{
+    width: 500px;
+    height: 500px;
+
+    img{
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      //object-position: left bottom;
+    }
+  }
+      </code></pre>
+        </div>
+        <div>
+          <div class="image">
+            <img src="kitten.jpg" />
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div>
+      <h2>Columns</h2>
+      <div class="flex">
+        <div>
+          <pre><code>
+  ul.twoCols{
+    column-count: 2;
+    column-gap: 40px;
+    column-rule-style: solid;
+
+    li{
+      margin-bottom: 1rem;
+      position: relative;
+      display: block;
+    }
+  }
+</code></pre>
+        </div>
+        <div>
+          <ul class="twoCols">
+            <li>Item 1</li>
+            <li>Item 2</li>
+            <li>Item 3<br />saut de ligne</li>
+            <li>Item 4<br />saut de ligne</li>
+            <li>Item 5</li>
+            <li>Item 6</li>
+            <li>Item 7</li>
+          </ul>
+        </div>
+      </div>
+      
+    </div>
+    <div>
+      <h2>vh/vw/ch</h2>
+      <div class="flex">
+        <div>
+          <pre><code>
+  .page{
+    height: 100vh;
+
+    .text{
+      width: 20ch;
+    }
+  }
+      </code></pre>
+        </div>
+        <div>
+          <div class="ch">
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+          </div>
+        </div>
+      </div>
+      
+    </div>
+    <div>
+      <h2>counters</h2>
+      <div class="flex">
+        <div>
+          <pre><code>
+  .steps{
+    counter-reset: stepNumber;
+        
+    > div{
+      counter-increment: stepNumber;
+
+      &:before{
+        content: counter(stepNumber);
+        position: absolite;
+        top: 0;
+        left: 0;
+        display: flex;
+        width: 30px;
+        height: 30px;
+        border-radius: 9999px;
+        align-items: center;
+        justify-content: center;
+        background: red;
+      }
+    }
+  }  
+      </code></pre>
+        </div>
+        <div>
+          <div class="steps">
+            <div>Bla bla bla bla bla</div>
+            <div>Bla bla bla bla bla</div>
+            <div>Bla bla bla bla bla</div>
+            <div>Bla bla bla bla bla</div>
+            <div>Bla bla bla bla bla</div>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+    <div>
+      <h2>calc/min/max/clamp</h2>
+      <pre><code>
+      .mainContent{
+        height: calc(100% - 100px);
+        display: flex;
+        justify-content: space-between;
+        width: min(1000px, 70%);
+        //width: clamp(100px, 1000px, 600px); //min, max, ideal
+
+        > div{
+          width: calc((100% - 2rem) / 3);
+        }
+      }  
+      </code></pre>
+    </div>
+    <div>
+      <h2>:is</h2>
+      <pre><code>
+      :is(ol, .list, ul) li {
+        ...  
+      }
+        
+      ol li{
+        ...  
+      }
+
+      :is(nav) a{
+        
+      }
+      </code></pre>
+    </div>
+    <div>
+      <h2>:where</h2>
+      <pre><code>
+      h3{
+        ...
+      }
+        
+      h3#heading{
+        ...
+      }
+
+      h3:where(#heading){
+        ...  
+      }
+      </code></pre>
+    </div>
+    <div>
+      <h2>:has</h2>
+      <pre><code>
+      .parent:has(img){
+        display: block;  
+      }  
+      </code></pre>
+    </div>
+  </div>
+	<script type="text/javascript" src="js/include.js"></script>
+	<script type="text/javascript" src="js/main.js"></script>
+	<script type="text/javascript" src="js/altitude.js"></script>
+  <script>
+    document.addEventListener("keyup", function (e) {
+      console.log(e.keyCode);
+      if (e.keyCode == 104) {
+        document.documentElement.scrollTo(0, document.documentElement.scrollTop - window.innerHeight);
+      } else if (e.keyCode == 98) {
+        document.documentElement.scrollTo(0, document.documentElement.scrollTop + window.innerHeight);
+      }
+    })
+  </script>
+</body>
+</html>
